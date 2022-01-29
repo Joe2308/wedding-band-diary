@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_gigs")
 def get_gigs():
-    gigs = mongo.db.gigs.find()
+    gigs = list(mongo.db.gigs.find())
     return render_template("gigs.html", gigs=gigs)
 
 

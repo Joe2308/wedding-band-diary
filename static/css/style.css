@@ -1,0 +1,250 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+/* Navigation styles */
+nav {
+    background-color: black;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    height: 80px;
+    line-height: 80px;
+  }
+  
+  nav a {
+    color: white !important;
+    font-weight: 500;
+    font-size: 18px !important;
+  }
+  
+  nav a:hover {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  nav .brand-logo:hover {
+    background-color: transparent !important;
+  }
+  
+  nav a i {
+    font-size: 18px;
+    margin-right: 5px;
+  }
+  
+  /* Button styles */
+  .buttons {
+    border-radius: 30px !important;
+    background-color: black !important;
+  }
+  
+  button:hover {
+    opacity: 0.7;
+  }
+  
+  .buttons:hover {
+    opacity: 0.7;
+  }
+  
+  .buttons-2:hover {
+    opacity: 0.7;
+  }
+  
+  .profile a {
+    margin-bottom: 20px;
+  }
+  
+  /* Heading and paragraph styles */
+  h2,
+  h3 {
+    margin-top: 55px
+  }
+  
+  p,
+  span {
+    color: black;
+  }
+  
+  hr {
+    height: 2px;
+    width: 25%;
+    background-color: black;
+    margin-bottom: 45px;
+  }
+  
+  /* Sign up and Login user redirect link text */
+  .guide-user {
+    color: red;
+  }
+  
+  .guide-user:hover {
+    opacity: 0.7;
+  }
+  
+  /* Home page hero image */
+  .hero-home {
+    background: url(../images/hero.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 550px;
+    max-width: 100% !important;
+    margin-top: 55px;
+  }
+  
+  .hero-cta {
+      margin-top: 55px;
+  }
+  /* Home page hero image button responsive */
+  @media screen and (min-width:1024px) and (max-width:1900px) {
+    .cta {
+      margin-top: 580px;
+      margin-bottom: 20px
+    }
+  }
+  
+  /* Home page hero image responsive */
+  @media(max-width: 768px) {
+    .hero-home {
+      background-position-x: 85%;
+      background-size: cover;
+      min-height: 180px
+    }
+  
+    .cta {
+      margin-top: 380px;
+      margin-bottom: 20px
+    }
+  }
+  
+  @media only screen and (min-width:601px) and (max-width:1024px) {
+    .btn {
+      margin: 2px;
+    }
+  }
+  
+  @media only screen and (min-width:601px) and (max-width:768px) {
+    .row .col.m3 {
+      width: 50%;
+    }
+  }
+  
+  @media(max-width: 320px) {
+    h2 {
+      font-size: 35px;
+    }
+  }
+  
+  /* Keep all card containers and images the same height */
+  .card img {
+    height: 230px;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  
+  .card-fixed {
+    max-height: 380px !important;
+  }
+  
+  /* Flash messages */
+  .flashes {
+    margin-top: 55px;
+  }
+  
+  .flashes h4 {
+    margin: auto;
+  }
+  
+  .flash-close {
+    color: black;
+  }
+  
+  /* Profile page heading */
+  .profile {
+    margin: auto;
+  }
+  
+  /* Full-info page styles */
+  .full-image {
+    max-height: 450px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    max-width: 100%;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  }
+  
+  .full-text {
+    padding: 0 20px 0;
+  }
+  
+  .full {
+    padding: 15px;
+  }
+  
+  strong {
+    font-size: 18px;
+  }
+  
+  /* All-sneakers Search box */
+  .search-box {
+    margin-bottom: 55px;
+  }
+  
+  .search-go {
+    margin-top: 35px;
+  }
+  
+  /* Shoe name on image cards */
+  .shoe-name {
+    color: #ff7f00;
+  }
+  
+  /* Footer */
+  .page-footer {
+    background-color: black;
+  }
+  
+  footer li {
+    display: inline;
+    margin: 15px;
+    font-size: 25px;
+  }
+  
+  footer li:hover {
+    opacity: 0.7;
+    -webkit-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+  }
+  
+  /* Sticky footer */
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  
+  main {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+  }
+  
+  /* Place eye icon in password field
+  Credit: https://codepen.io/Sohail05/pen/yOpeBm */
+  .field_icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
