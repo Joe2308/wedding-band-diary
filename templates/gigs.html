@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Home page hero image and CTA -->
+<div class="row hero-home" title="">
+    <div class="hero-cta col s12 m12 l8 offset-l2 center-align">
+        <a href=""
+            class="cta buttons col s6 offset-s3 m4 offset-m4 btn-large text-shadow white-text">Log In</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <h2 class="center">Band Diary</h2>
+        <hr>
+    </div>
+</div>
+
+<!-- Loop over all items from .sneakers collection using .find -->
+<div class="row">
+    {% for gig in gigs %}
+        <div class="card-fixed col s12 m3 l4">
+            <a href="">
+                <span class="sr-only">Click image for more info</span>
+                <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <!-- Show image from database or backup from images folder -->
+                        <img class="activator" src="{{ gig.venue_image_url }}" alt="venue image"
+                            onerror="this.onerror=null;this.src='../static/images/error-image.png';">
+                    </div>
+                    <div class="card-content">
+                        <!-- Show title, shoename and user from database -->
+                        <span class="card-title activator">{{ gig.category_name }}</span>
+                        <p class="">{{ gig.venue }}</p>
+                        <p class="">{{ gig.gig_date }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
