@@ -106,16 +106,10 @@ nav {
   }
   
   /* Home page hero image responsive */
-  @media(max-width: 768px) {
+  @media(max-width: 600px) {
     .hero-home {
-      background-position-x: 85%;
       background-size: cover;
       min-height: 180px
-    }
-  
-    .cta {
-      margin-top: 380px;
-      margin-bottom: 20px
     }
   }
   

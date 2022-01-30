@@ -12,18 +12,26 @@
     </div>
 </div>
 
-<!-- Loop over gigs collection -->
 <div class="row">
     {% for gig in gigs %}
-       <p>{{gig.category_name}}</p> 
-       <p>{{gig.gig_date}}</p>
-     <p>{{gig.arrival_time}}</p>
-      <p>{{gig.package_type}}</p>
-       <p>{{gig.first_dance}}</p>
-      <p>{{gig.couple_name}}</p>
-       <p>{{gig.stage_time}}</p>
-       <p>{{gig.google_map_url}}</p>
-      <p>{{gig.image_url}}</p>
+        <div class="card-fixed col s12 m3 l4">
+            <a href="">
+                <span class="sr-only">Click image for more info</span>
+                <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <!-- Show image from database or backup from images folder -->
+                        <img class="activator" src="{{ gig.image_url }}" alt="All sneakers image"
+                            onerror="this.onerror=null;this.src='../static/images/error-image.png';">
+                    </div>
+                    <div class="card-content">
+                        <!-- Show title, shoename and user from database -->
+                        <span class="card-title activator">{{ gig.category_name }}</span>
+                        <p class="shoe-name">{{ gig.venue }}</p>
+                        <p>Gig Date: <em>{{ gig.gig_date }}</em></p>
+                    </div>
+                </div>
+            </a>
+        </div>
     {% endfor %}
 </div>
 
