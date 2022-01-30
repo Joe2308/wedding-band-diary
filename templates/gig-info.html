@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <!-- Category -->
+    <div class="row">
+        <h2 class="center-align">{{ gig.venue }}</h2>
+    </div>
+</div>
+<!-- Sneaker info & image -->
+<div class="full row">
+    <div class=" col s12 m5 l5">
+        <!-- Show image from database or backup from images folder -->
+        <img class="full-image" src="{{ gig.image_url }}" alt="Venue Image"
+            onerror="this.onerror=null;this.src='../static/images/error-image.png';">
+    </div>
+    <div class="col s12 m7 l7">
+        <div class="full-text">
+            <p>
+                <strong>Category:</strong>
+                {{ gig.category_name }}
+            </p>
+            <p>
+                <strong>Gig Date:</strong>
+                {{ gig.gig_date }}
+            </p>
+            <p>
+                <strong>Arrival Time:</strong>
+                {{ gig.arrival_time }}
+            </p>
+            <p>
+                <strong>First Dance:</strong>
+                {{ gig.first_dance }}
+            </p>
+            <p>
+                <strong>Package Type:</strong>
+                {{ gig.package_type }}
+            </p>
+            <p>
+                <strong>Couple's Name:</strong>
+                {{ gig.couple_name }}
+            </p>
+            <p>
+                <strong>Set Up Time:</strong>
+                {{ gig.set_up_time }}
+            </p>
+            <div class="col s12 m4 search-go">
+                <a href="{{ gig.directions }}"
+                    class="buttons-2 black btn text-shadow">Directions <i class="fas fa-directions" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+     
+
+        
+
+    </div>
+</div>
+
+
+{% endblock %}

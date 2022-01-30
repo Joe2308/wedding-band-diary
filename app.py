@@ -22,6 +22,16 @@ def get_gigs():
     return render_template("gigs.html", gigs=gigs)
 
 
+@app.route("/gig_info/<gig_id>")
+def gig_info(gig_id):
+    # Find specific gig from collection using primary id
+    # if not found return a 404 redirect
+    gig = mongo.db.gigs.find_one_or_404({"_id": ObjectId(gig_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template(
+        "gig-info.html", gig=gig, categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

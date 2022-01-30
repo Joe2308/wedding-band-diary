@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="row">
-        <h2 class="center">Band Diary</h2>
+        <h2 class="center">Upcoming Gigs</h2>
         <hr>
     </div>
 </div>
@@ -15,7 +15,7 @@
 <div class="row">
     {% for gig in gigs %}
         <div class="card-fixed col s12 m3 l4">
-            <a href="">
+            <a href="{{ url_for('gig_info', gig_id=gig._id) }}">
                 <span class="sr-only">Click image for more info</span>
                 <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
                     <div class="card-image waves-effect waves-block waves-light">
