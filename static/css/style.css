@@ -59,7 +59,10 @@ nav {
   /* Heading and paragraph styles */
   h2,
   h3 {
-    margin-top: 55px
+    margin-top: 55px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px grey;
   }
   
   p,
@@ -93,16 +96,19 @@ nav {
     max-width: 100% !important;
     margin-top: 55px;
   }
+
+  .hero-home-2 {
+    background: url(../images/home-hero.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+    max-width: 100% !important;
+    margin-bottom: 0px;
+  }
   
   .hero-cta {
-      margin-top: 55px;
-  }
-  /* Home page hero image button responsive */
-  @media screen and (min-width:1024px) and (max-width:1900px) {
-    .cta {
-      margin-top: 580px;
-      margin-bottom: 20px
-    }
+      margin-top: 200px;
   }
   
   /* Home page hero image responsive */
@@ -111,11 +117,23 @@ nav {
       background-size: cover;
       min-height: 180px
     }
+
+    .hero-home-2 {
+      min-height: 400px;
+    }
+
+    .cta {
+      margin-top: -80px;
+    }
   }
   
   @media only screen and (min-width:601px) and (max-width:1024px) {
-    .btn {
-      margin: 2px;
+    .cta {
+      margin-top: 300px;
+    }
+
+    .hero-home-2 {
+      min-height: 1150px;
     }
   }
   
