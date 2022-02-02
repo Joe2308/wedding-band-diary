@@ -69,6 +69,18 @@ def login():
     return render_template("login.html")
 
 
+# Log out
+@app.route("/logout")
+def logout():
+    # If user is authenticated
+    if is_authenticated():
+        # Remove user from session cookies
+        flash("You have successfully logged out")
+        session.pop("user")
+
+    return redirect(url_for("login"))
+
+
 # Check if user is authenticated
 def is_authenticated():
     """ Ensure that user is authenticated

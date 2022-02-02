@@ -39,6 +39,7 @@
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href=""><i class="fas fa-user"></i>
                             My Profile</a></li>
+                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                             <!-- <li><a href=""><i class="fas fa-search" aria-hidden="true"></i>
                                     All Gigs</a></li> -->
 
@@ -65,6 +66,7 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="">
                 My Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             <!-- <li><a href="">All Gigs</a></li> -->
             <!-- Show nav elements based on whether user is logged in or logged out -->
             <!-- {% if session.user|lower %}
