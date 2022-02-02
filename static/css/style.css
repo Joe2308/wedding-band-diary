@@ -60,7 +60,9 @@ nav {
   h2,
   h3 {
     margin-top: 55px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 2.5em;
   }
   
   p,
@@ -139,7 +141,7 @@ nav {
   
   @media(max-width: 320px) {
     h2 {
-      font-size: 35px;
+      font-size: 2em;
     }
   }
   
