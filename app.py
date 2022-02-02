@@ -28,7 +28,7 @@ def get_gigs():
     if is_authenticated():
         gigs = mongo.db.gigs.find().sort('date', 1)
         return render_template("gigs.html", gigs=gigs)
-    flash("You must be authenticated to list categories")
+    flash("You must be a band member to access this page!")
     return redirect(url_for("login"))
 
 
