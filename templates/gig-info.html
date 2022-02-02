@@ -9,12 +9,12 @@
 </div>
 <!-- Sneaker info & image -->
 <div class="full row">
-    <div class=" col s12 m5 l5">
+    <div class="col s8 offset-s2 m4 offset-m1 l4 offset-l1">
         <!-- Show image from database or backup from images folder -->
         <img class="full-image" src="{{ gig.image_url }}" alt="Venue Image"
             onerror="this.onerror=null;this.src='../static/images/error-image.png';">
     </div>
-    <div class="col s12 m7 l7">
+    <div class="col s8 offset-s2 m4 offset-m1 l4 offset-l1">
         <div class="full-text">
             <p>
                 <strong>Category:</strong>
@@ -28,18 +28,24 @@
                 <strong>Arrival Time:</strong>
                 {{ gig.arrival_time }}
             </p>
+            {% if gig.first_dance %}
             <p>
                 <strong>First Dance:</strong>
                 {{ gig.first_dance }}
             </p>
+            {% endif %}
+            {% if gig.package_type %}
             <p>
                 <strong>Package Type:</strong>
                 {{ gig.package_type }}
             </p>
+            {% endif %}
+            {% if gig.couple_name %}
             <p>
                 <strong>Couple's Name:</strong>
                 {{ gig.couple_name }}
             </p>
+            {% endif %}
             <p>
                 <strong>Set Up Time:</strong>
                 {{ gig.set_up_time }}

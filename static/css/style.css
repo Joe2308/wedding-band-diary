@@ -121,6 +121,10 @@ nav {
     .hero-home-2 {
       min-height: 687px
     }
+
+    .full-image {
+      margin-top: 0px !important;
+    }
   }
   
   @media only screen and (min-width:601px) and (max-width:1024px) {
@@ -177,6 +181,7 @@ nav {
   /* Full-info page styles */
   .full-image {
     max-height: 450px;
+    margin-top: 15px;
     -o-object-fit: cover;
     object-fit: cover;
     max-width: 100%;
