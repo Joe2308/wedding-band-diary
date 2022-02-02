@@ -4,6 +4,8 @@ from flask import (
     redirect, request, session, url_for, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -35,6 +37,40 @@ def gig_info(gig_id):
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template(
         "gig-info.html", gig=gig, categories=categories)
+
+
+# Log in page
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username").lower()
+        password = request.form.get("password")
+        session["user"] = username
+        existing_user = mongo.db.users.find_one(
+            {"username": username})
+        existing_password = mongo.db.users.find_one({"password": password})
+
+        if(existing_user):
+            if(existing_password):
+                session["user"] = username
+                flash("Welcome, {}!".format(username.capitalize()))
+                return redirect(url_for("get_gigs"))
+            else:
+                # Password does not match
+                flash("Incorrect password and/or username")
+                return redirect(url_for("login"))
+
+        flash("Incorrect password and/or username")
+        return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+# Check if user is authenticated
+def is_authenticated():
+    """ Ensure that user is authenticated
+    """
+    return 'user' in session
 
 
 if __name__ == "__main__":

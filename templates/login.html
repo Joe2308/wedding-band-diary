@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h3 class="center-align">LOG IN</h3>
+    </div>
+</div>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="post" action="{{ url_for('login') }}">
+        <div class="card-panel">
+            <!-- Username field -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-cog prefix" aria-hidden="true"></i>
+                    <input id="username" name="username" type="text" minlength="2" maxlength="20"
+                        class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <!-- Password field -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-lock prefix" aria-hidden="true"></i>
+                    <input id="password" name="password" type="password" minlength="5" maxlength="20"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="validate log" required>
+                    <!-- Show and hide password -->
+                    <span class="fas fa-eye field_icon" aria-hidden="true"></span>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <!-- Log In button -->
+            <div class="row">
+                <button type="submit" class="buttons col s8 offset-s2 m4 offset-m4 btn-large text-shadow white-text">Log
+                    In</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
