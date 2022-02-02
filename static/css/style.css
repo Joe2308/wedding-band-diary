@@ -100,13 +100,13 @@ nav {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 500px;
+    min-height: 800px;
     max-width: 100% !important;
     margin-bottom: 0px;
   }
   
   .hero-cta {
-      margin-top: 200px;
+      margin-top: 300px;
   }
   
   /* Home page hero image responsive */

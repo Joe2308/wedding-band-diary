@@ -34,6 +34,7 @@
                             alt="logo">
                         <span class="sr-only">Home</span>
                     </a>
+                    {% if session.user|lower %}
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i>
                         <span class="sr-only">Navigation Menu</span></a>
                     <ul class="right hide-on-med-and-down">
@@ -56,6 +57,7 @@
                 </div>
             </nav>
         </div>
+        {% endif %}
 
         <!-- mobile sidenav -->
         <ul class="sidenav" id="mobile-demo">
