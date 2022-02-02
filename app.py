@@ -25,8 +25,11 @@ def home():
 
 @app.route("/get_gigs")
 def get_gigs():
-    gigs = mongo.db.gigs.find().sort('date', 1)
-    return render_template("gigs.html", gigs=gigs)
+    if is_authenticated():
+        gigs = mongo.db.gigs.find().sort('date', 1)
+        return render_template("gigs.html", gigs=gigs)
+    flash("You must be authenticated to list categories")
+    return redirect(url_for("login"))
 
 
 @app.route("/gig_info/<gig_id>")
