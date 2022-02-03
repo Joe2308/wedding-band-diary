@@ -53,7 +53,13 @@ nav {
   }
   
   .profile a {
-    margin-bottom: 20px;
+    margin: 35px;
+    margin-top: 100px;
+
+  }
+
+  .profile-photo {
+    margin-top: 15px;
   }
   
   /* Heading and paragraph styles */
@@ -117,6 +123,10 @@ nav {
       background-size: cover;
       min-height: 180px
     }
+
+    .profile a {
+      margin: 15px;
+  }
 
     .hero-home-2 {
       min-height: 687px

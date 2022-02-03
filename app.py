@@ -18,11 +18,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 @app.route("/")
+# Home page
 @app.route("/home")
 def home():
     return render_template("home.html")
 
 
+# All gigs page
 @app.route("/get_gigs")
 def get_gigs():
     if is_authenticated():
@@ -32,6 +34,7 @@ def get_gigs():
     return redirect(url_for("login"))
 
 
+# Gig info page
 @app.route("/gig_info/<gig_id>")
 def gig_info(gig_id):
     # Find specific gig from collection using primary id
@@ -77,6 +80,23 @@ def logout():
         # Remove user from session cookies
         flash("You have successfully logged out")
         session.pop("user")
+
+    return redirect(url_for("login"))
+
+
+# Profile page
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    # Check if user name is authenticated
+    if is_authenticated():
+        profiles = list(mongo.db.users.find())
+        # Retrieve active username from database
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        if session["user"]:
+            return render_template(
+                "profile.html", username=username, profiles=profiles)
 
     return redirect(url_for("login"))
 
