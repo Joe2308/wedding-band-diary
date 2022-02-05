@@ -1,11 +1,10 @@
+"""Flask imports"""
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for, abort)
+    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -17,16 +16,19 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 # Home page
 @app.route("/home")
 def home():
+    """Function to return the home page"""
     return render_template("home.html")
 
 
 # All gigs page
 @app.route("/get_gigs")
 def get_gigs():
+    """Function to return all gigs"""
     if is_authenticated():
         gigs = mongo.db.gigs.find().sort('date', 1)
         return render_template("gigs.html", gigs=gigs)
@@ -37,6 +39,7 @@ def get_gigs():
 # Gig info page
 @app.route("/gig_info/<gig_id>")
 def gig_info(gig_id):
+    """Show individual gigs using object id"""
     # Find specific gig from collection using primary id
     # if not found return a 404 redirect
     gig = mongo.db.gigs.find_one_or_404({"_id": ObjectId(gig_id)})
@@ -48,6 +51,7 @@ def gig_info(gig_id):
 # Log in page
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """Function to allow user login"""
     if request.method == "POST":
         username = request.form.get("username").lower()
         password = request.form.get("password")
@@ -56,8 +60,8 @@ def login():
             {"username": username})
         existing_password = mongo.db.users.find_one({"password": password})
 
-        if(existing_user):
-            if(existing_password):
+        if existing_user:
+            if existing_password:
                 session["user"] = username
                 flash("Welcome, {}!".format(username.capitalize()))
                 return redirect(url_for("get_gigs"))
@@ -75,6 +79,7 @@ def login():
 # Log out
 @app.route("/logout")
 def logout():
+    """Function to allow user to logout"""
     # If user is authenticated
     if is_authenticated():
         # Remove user from session cookies
@@ -85,8 +90,9 @@ def logout():
 
 
 # Profile page
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
+@app.route("/profile/", methods=["GET", "POST"])
+def my_profile():
+    """Function to show user's profile page"""
     # Check if user name is authenticated
     if is_authenticated():
         profiles = list(mongo.db.users.find())
@@ -99,6 +105,25 @@ def profile():
                 "profile.html", username=username, profiles=profiles)
 
     return redirect(url_for("login"))
+
+
+# Edit profile picture
+@app.route("/edit_profile/<image_id>", methods=["GET", "POST"])
+def edit_profile(image_id):
+    """Function to edit profile image"""
+    # Check if user is authenticated
+    if is_authenticated():
+        if request.method == "POST":
+            change = {"$set": {"image_url": request.form.get("image_url")}}
+            mongo.db.users.update_one({"_id": ObjectId(image_id)}, change)
+            flash("Profile image has been updated!")
+            return redirect(url_for("my_profile"))
+    image = mongo.db.users.find_one_or_404(
+        {"_id": ObjectId(image_id)})
+    return render_template("edit-image.html", image=image)
+
+
+
 
 
 # Check if user is authenticated

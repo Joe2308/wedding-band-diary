@@ -28,10 +28,10 @@
                         <div class="card-content">
                             <!-- Show title, shoename and user from database -->
                             <span class="card-title activator"></span>
-                            <p>Band Memeber: <em>{{ profile.username.title() }}</em></p>
+                            <p>Band Member: <em>{{ profile.username.title() }}</em></p>
                             <p class="shoe-name">Instrument: {{ profile.instrument }}</p>
                             <div>
-                            <a href="" class="profile-photo buttons-2 black btn text-shadow">
+                            <a href="{{ url_for('edit_profile', image_id=profile._id)}}" class="profile-photo buttons-2 black btn text-shadow">
                                 Change Photo <i class="fas fa-camera-retro right" aria-hidden="true"></i>
                             </a>
                         </div>
