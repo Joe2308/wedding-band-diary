@@ -116,7 +116,7 @@ def edit_profile(image_id):
         if request.method == "POST":
             change = {"$set": {"image_url": request.form.get("image_url")}}
             mongo.db.users.update_one({"_id": ObjectId(image_id)}, change)
-            flash("Profile image has been updated!")
+            flash("Your profile image has been updated!")
             return redirect(url_for("my_profile"))
     image = mongo.db.users.find_one_or_404(
         {"_id": ObjectId(image_id)})

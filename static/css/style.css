@@ -36,7 +36,7 @@ nav {
   
   /* Button styles */
   .buttons {
-    border-radius: 30px !important;
+    /* border-radius: 30px !important; */
     background-color: black !important;
   }
   
@@ -51,6 +51,20 @@ nav {
   .buttons-2:hover {
     opacity: 0.7;
   }
+
+  i {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
   
   .profile a {
     margin: 35px;
@@ -124,6 +138,15 @@ nav {
       min-height: 180px
     }
 
+    .profile {
+      margin-top: 35px !important;
+    }
+
+    .profile-btn {
+        padding: .5rem .5rem;
+        font-size: .8rem;
+    }
+
     .profile a {
       margin: 15px;
   }
@@ -157,6 +180,15 @@ nav {
     h2 {
       font-size: 2em;
     }
+    
+    .profile {
+      margin-top: 35px !important;
+    }
+
+  .profile-btn {
+      padding: .400rem .400rem;
+      font-size: .59rem;
+  }
   }
   
   /* Keep all card containers and images the same height */
@@ -168,6 +200,30 @@ nav {
   
   .card-fixed {
     max-height: 380px !important;
+  }
+
+  .card-fixed-profile {
+    max-height: 380px !important;
+    max-width: 380px;
+  }
+
+  .my-profile .col.s12 {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    float: none;
+  }
+
+  .card-image-profile img {
+    border-radius: 50%;
+    padding: 15px;
+    height: 230px;
+    width: 230px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   }
   
   /* Flash messages */

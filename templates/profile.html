@@ -7,31 +7,30 @@
             <h3 class=" profile center-align">
                 MY Profile
             </h3>
-            <hr>
         </div>
     </div>
 </div>
 
 
 
-<div class="row">
+<div class="row my-profile">
     {% for profile in profiles %}
     {% if session.user|lower == profile.username %}
-            <div class="card-fixed col s12 m3 l4">
+            <div class="card-fixed-profile col s12 m3 l4">
                 <a href="">
                     <div class="card tooltipped" data-position="top" data-tooltip="Click to edit">
-                        <div class="card-image">
+                        <div class="card-image-profile center-align">
                             <!-- Show image from database or backup from images folder -->
                             <img class="activator" src="{{ profile.image_url }}" alt="Profile Image"
                                 onerror="this.onerror=null;this.src='../static/images/error-image.png';">
                         </div>
-                        <div class="card-content">
+                        <div class="card-content center-align">
                             <!-- Show title, shoename and user from database -->
                             <span class="card-title activator"></span>
                             <p>Band Member: <em>{{ profile.username.title() }}</em></p>
                             <p class="shoe-name">Instrument: {{ profile.instrument }}</p>
                             <div>
-                            <a href="{{ url_for('edit_profile', image_id=profile._id)}}" class="profile-photo buttons-2 black btn text-shadow">
+                            <a href="{{ url_for('edit_profile', image_id=profile._id)}}" class="profile-btn profile-photo buttons-2 black btn text-shadow">
                                 Change Photo <i class="fas fa-camera-retro right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -43,11 +42,11 @@
     {% endfor %}
     
     <div class="profile col s12 center-align m9 l8">
-        <a href="" class="buttons-2 black btn-large text-shadow">
+        <a href="" class="profile-btn buttons-2 black btn-large text-shadow">
             My Availability <i class="fas fa-calendar-alt right" aria-hidden="true"></i>
         </a>
         
-            <a href="" class="buttons-2 black btn-large text-shadow">
+            <a href="" class="profile-btn buttons-2 black btn-large text-shadow">
                 Add Songs <i class="fas fa-guitar right" aria-hidden="true"></i>
             </a>
     </div>
