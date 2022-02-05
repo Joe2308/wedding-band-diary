@@ -28,7 +28,12 @@
                             <!-- Show title, shoename and user from database -->
                             <span class="card-title activator"></span>
                             <p>Band Member: <em>{{ profile.username.title() }}</em></p>
+                            {% if profile.instrument %}
                             <p class="shoe-name">Instrument: {{ profile.instrument }}</p>
+                            {% endif %}
+                            {% if session.user|lower == "adminjoe2308"|lower %}
+                            <p class="shoe-name">Role: {{ profile.role }}</p>
+                            {% endif %}
                             <div>
                             <a href="{{ url_for('edit_profile', image_id=profile._id)}}" class="profile-btn profile-photo buttons-2 black btn text-shadow">
                                 Change Photo <i class="fas fa-camera-retro right" aria-hidden="true"></i>
