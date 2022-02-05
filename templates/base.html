@@ -40,19 +40,10 @@
                         <li><a href="{{ url_for('get_gigs') }}">Gigs</a></li>
                         <li><a href="{{ url_for('my_profile') }}"><i class="fas fa-user"></i>
                             My Profile</a></li>
+                        {% if session.user|lower == "adminjoe2308"|lower %}
+                        <li><a href="{{ url_for('add_gigs') }}">Add Gigs</a></li>
+                        {% endif %}
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                            <!-- <li><a href=""><i class="fas fa-search" aria-hidden="true"></i>
-                                    All Gigs</a></li> -->
-
-                            <!-- Show nav elements based on whether user is logged in or logged out -->
-                            <!-- {% if session.user|lower %}
-                                <li><a href=""><i class="fas fa-user"></i>
-                                        My Sneakers</a></li>
-                                <li><a href="">Log Out</a></li>
-                            {% else %}
-                                <li><a href="">Log In</a></li>
-                                <li><a href="">Sign Up</a></li>
-                            {% endif %} -->
                     </ul>
                 </div>
             </nav>
@@ -60,6 +51,7 @@
         {% endif %}
 
         <!-- mobile sidenav -->
+        {% if session.user|lower %}
         <ul class="sidenav" id="mobile-demo">
             <li>
                 <h4 class="center-align">Band Diary</h4>
@@ -68,17 +60,12 @@
             <li><a href="{{ url_for('get_gigs') }}">Gigs</a></li>
             <li><a href="{{ url_for('my_profile') }}">
                 My Profile</a></li>
+            {% if session.user|lower == "adminjoe2308"|lower %}
+            <li><a href="{{ url_for('add_gigs') }}">Add Gigs</a></li>
+            {% endif %}
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-            <!-- <li><a href="">All Gigs</a></li> -->
-            <!-- Show nav elements based on whether user is logged in or logged out -->
-            <!-- {% if session.user|lower %}
-                <li><a href="">My Sneakers</a></li>
-                <li><a href="">Log Out</a></li>
-            {% else %}
-                <li><a href="">Log In</a></li>
-                <li><a href="">Sign Up</a></li>
-            {% endif %} -->
 		</ul>
+        {% endif %}
 	</header>
 
     <section>

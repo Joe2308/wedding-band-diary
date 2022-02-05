@@ -111,18 +111,51 @@ def my_profile():
 @app.route("/edit_profile/<image_id>", methods=["GET", "POST"])
 def edit_profile(image_id):
     """Function to edit profile image"""
+    if request.method == "POST":
+        change = {"$set": {"image_url": request.form.get("image_url")}}
+        mongo.db.users.update_one({"_id": ObjectId(image_id)}, change)
+        flash("Your profile image has been updated!")
+        return redirect(url_for("my_profile"))
     # Check if user is authenticated
     if is_authenticated():
-        if request.method == "POST":
-            change = {"$set": {"image_url": request.form.get("image_url")}}
-            mongo.db.users.update_one({"_id": ObjectId(image_id)}, change)
-            flash("Your profile image has been updated!")
-            return redirect(url_for("my_profile"))
-    image = mongo.db.users.find_one_or_404(
-        {"_id": ObjectId(image_id)})
-    return render_template("edit-image.html", image=image)
+        image = mongo.db.users.find_one_or_404(
+            {"_id": ObjectId(image_id)})
+        return render_template("edit-image.html", image=image)
+    return redirect(url_for('login'))
 
 
+# Add gigs form
+@app.route("/add_gigs", methods=["GET", "POST"])
+def add_gigs():
+    """Function to add gigs"""
+    if request.method == "POST":
+        # Create dictionary to collect all form data
+        add = {
+            "category_name": request.form.get("category_name").lower(),
+            "arrival_time": request.form.get("arrival_time").lower(),
+            "couple_name": request.form.get("couple_name"),
+            "venue": request.form.get("venue"),
+            "package_type": request.form.get("package_type"),
+            "first_dance": request.form.get("first_dance"),
+            "set_up_time": request.form.get("set_up_time"),
+            "gig_date": request.form.get("gig_date"),
+            "date": "",
+            "directions": request.form.get("directions"),
+            "image_url": request.form.get("image_url")
+        }
+
+        # Insert all form data to mongodb gigs collection
+        mongo.db.gigs.insert_one(add)
+        flash("Gig added!")
+        return redirect(url_for('get_gigs'))
+    # Check if user is authenticated
+    if is_authenticated():  
+        # Create categories variable to alphabetically sort html select
+        categories = mongo.db.gig_categories.find().sort("category_name", 1)
+        if session["user"] == "adminjoe2308":
+            return render_template("add-gigs.html", categories=categories)
+        flash("You must be an Admin to perform that operation!")
+    return redirect(url_for('login'))
 
 
 
