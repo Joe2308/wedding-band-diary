@@ -139,7 +139,7 @@ def add_gigs():
             "first_dance": request.form.get("first_dance"),
             "set_up_time": request.form.get("set_up_time"),
             "gig_date": request.form.get("gig_date"),
-            "due_date": request.form.get("due_date"),
+            "date": request.form.get("date"),
             "directions": request.form.get("directions"),
             "image_url": request.form.get("image_url")
         }
