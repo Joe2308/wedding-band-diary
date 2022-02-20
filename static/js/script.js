@@ -2,6 +2,9 @@ $(document).ready(function () {
     $(".sidenav").sidenav({edge: "right"});
     $('.tooltipped').tooltip();
     $('select').formSelect();
+    $('.datepicker').datepicker({
+        format: "mmm d, yy"
+    });
 });
 
 $(function() { setTimeout(function() { 

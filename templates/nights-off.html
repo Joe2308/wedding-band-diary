@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Home page hero image and CTA -->
+<div class="row hero-home" title="">
+</div>
+
+<div class="container">
+    <div class="row">
+        <h2 class="center">Member Availability</h2>
+    </div>
+</div>
+
+<div class="row">
+    {% for dep in deps %}
+        <div class="card-fixed col s12 m3 l4">
+            <a href="{{ url_for() }}">
+                <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
+                    <div class="card-image">
+                        <!-- Show image from database or backup from images folder -->
+                        <img class="activator" src="{{ gig.image_url }}" alt="All sneakers image"
+                            onerror="this.onerror=null;this.src='../static/images/error-image.png';">
+                    </div>
+                    <div class="card-content">
+                        <!-- Show title, shoename and user from database -->
+                        <p class="shoe-name">{{ dep.gig_date }}</p>
+                        <p><em>{{ dep.user }}</em></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

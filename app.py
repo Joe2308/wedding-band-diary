@@ -130,6 +130,8 @@ def edit_profile(image_id):
 def add_gigs():
     """Function to add gigs"""
     if request.method == "POST":
+        date_time_str = request.form.get("date")
+        date_time_obj = datetime.strptime(date_time_str, '%b %d, %y')
         # Create dictionary to collect all form data
         add = {
             "category_name": request.form.get("category_name").lower(),
@@ -140,7 +142,7 @@ def add_gigs():
             "first_dance": request.form.get("first_dance"),
             "set_up_time": request.form.get("set_up_time"),
             "gig_date": request.form.get("gig_date"),
-            "date": request.form.get("date"),
+            "date": date_time_obj,
             "directions": request.form.get("directions"),
             "image_url": request.form.get("image_url")
         }
