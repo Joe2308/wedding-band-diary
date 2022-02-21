@@ -7,7 +7,7 @@
         <h2 class="center-align">{{ gig.venue }}</h2>
     </div>
 </div>
-<!-- Sneaker info & image -->
+<!-- Gig info & image -->
 <div class="full row">
     <div class="col s12 m5 l5">
         <!-- Show image from database or backup from images folder -->
@@ -57,10 +57,34 @@
         </div>
 
      
+        <!-- Defensive programming delete modal -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4 class="center-align">Are You Sure?</h4>
+            </div>
+            <div class="center-align">
+                <img src="{{url_for('static', filename='images/logo.png')}}" height="150" alt="Picture Perfect Logo">
+            </div>
+            <div class="modal-footer">
+                <a href="" class="modal-close buttons-2 btn red text-shadow">No <i
+                        class="fas fa-times-circle right" aria-hidden="true"></i></a>
+                <a href="{{ url_for('delete_gigs', gig_id=gig._id) }}"
+                    class="buttons-2 modal-close black btn">Yes <i class="fas fa-check-circle"
+                        aria-hidden="true"></i></a>
+            </div>
+        </div>
 
-        
+        </div>
 
-    </div>
+        <!-- Only show edit and delete buttons if the sneakers belong to logged in user -->
+        {% if session.user|lower == "adminjoe2308" %}
+            <div class="col s12 m4 search-go">
+                <a href="{{ url_for('edit_gigs', gig_id=gig._id) }}"
+                    class="buttons-2 black btn text-shadow">Edit <i class="fas fa-edit" aria-hidden="true"></i></a>
+                <button data-target="modal1" class="red btn text-shadow modal-trigger">Delete <i
+                        class="fas fa-trash-alt" aria-hidden="true"></i></button>
+            </div>
+        {% endif %}
 </div>
 
 

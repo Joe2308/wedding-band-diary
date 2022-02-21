@@ -2,7 +2,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, abort)
 from datetime import datetime
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -160,6 +160,66 @@ def add_gigs():
         flash("You must be an Admin to perform that operation!")
     return redirect(url_for('login'))
 
+
+# Edit gigs form
+@app.route("/edit_gigs/<gig_id>", methods=["GET", "POST"])
+def edit_gigs(gig_id):
+    """ Function to edit gigs """
+    # Check if user is authenticated
+    if is_authenticated():
+        # Check if object id is valid
+
+        if request.method == "POST":
+            date_time_str = request.form.get("date")
+            date_time_obj = datetime.strptime(date_time_str, '%b %d, %y')
+            # Create dictionary to collect all form data
+            add = {
+                "category_name": request.form.get("category_name").lower(),
+                "arrival_time": request.form.get("arrival_time").lower(),
+                "couple_name": request.form.get("couple_name"),
+                "venue": request.form.get("venue"),
+                "package_type": request.form.get("package_type"),
+                "first_dance": request.form.get("first_dance"),
+                "set_up_time": request.form.get("set_up_time"),
+                "gig_date": request.form.get("gig_date"),
+                "date": date_time_obj,
+                "directions": request.form.get("directions"),
+                "image_url": request.form.get("image_url")
+            }
+
+            # Update mongodb sneakers collection
+            mongo.db.gigs.update({"_id": ObjectId(gig_id)}, add)
+            flash("Your sneakers have been updated!")
+            return redirect(url_for('profile'))
+
+    gig = mongo.db.gigs.find_one_or_404({"_id": ObjectId(gig_id)})
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template(
+        "edit-gigs.html", gig=gig, categories=categories)
+
+
+# Delete gigs
+@app.route("/delete_gigs/<gig_id>")
+def delete_gigs(gig_id):
+    """ Function to delete gigs"""
+    # Check if user is authenticated
+    if is_authenticated():
+        # Check if object id is valid
+
+        mongo.db.gigs.delete_one({"_id": ObjectId(gig_id)})
+        flash("Gig successfully deleted")
+        return redirect(url_for('my_profile'))
+
+    flash("You must be an admin to delete gigs")
+    return redirect(url_for("login"))
+
+
+# Check if object id is valid
+def is_object_id_valid(id_value):
+    """ Validate is the id_value is a valid ObjectId
+    """
+    return id_value != "" and ObjectId.is_valid(id_value)
 
 
 # Check if user is authenticated

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <h3 class="center">Add Gigs</h3>
+</div>
+
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_gigs', gig_id=gig._id)}}">
+        <div class="card-panel">
+            <!-- Category select dropdown -->
+            <div class="row tooltipped" data-position="top" data-tooltip="Please select appropriate category">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <select id="category_name" name="category_name" class="validate" required>
+                        <option value="" disabled selected>Choose category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.category_name }}">{{ category.category_name.capitalize() }}
+                                </option>
+                            {% endfor %}
+                    </select>
+                    <label for="category_name">Gig Category</label>
+                </div>
+            </div>
+            <!-- Venue name input -->
+            <div class="row tooltipped" data-position="top" data-tooltip="Please enter name of shoe min 1 characters">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <input id="venue" name="venue" minlength="1" maxlength="50" type="text" class="validate"
+                        required>
+                    <label for="venue">Venue</label>
+                </div>
+            </div>
+            <!-- Date string input -->
+            <div class="row tooltipped" data-position="top"
+                data-tooltip="Please enter gig date">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <input id="gig_date" name="gig_date" type="text"
+                        class="validate" required>
+                    <label for="gig_date">Gig Date</label>
+                </div>
+            </div>
+           <!-- date picker -->
+           <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-calendar-alt prefix light-black-text text-darken-4"></i>
+                <input id="date" name="date" type="text" class="datepicker validate" required>
+                <label for="date">Pick Date</label>
+            </div>
+        </div>
+            <!-- Arrival time -->
+            <div class="row tooltipped" data-position="top"
+                data-tooltip="Please enter arrival time">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <input id="arrival_time" name="arrival_time" type="text"
+                        class="validate" required>
+                    <label for="arrival_time">Arrival Time</label>
+                </div>
+            </div>
+            <!-- First Dance -->
+            <div class="row tooltipped" data-position="top"
+                data-tooltip="Please enter first dance">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <input id="first_dance" name="first_dance" type="text"
+                        class="validate">
+                    <label for="first_dance">First Dance</label>
+                </div>
+            </div>
+             <!-- Package Type -->
+             <div class="row tooltipped" data-position="top"
+             data-tooltip="Please enter package type">
+             <div class="input-field col s12">
+                 <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                 <input id="package_type" name="package_type" type="text"
+                     class="validate">
+                 <label for="package_type">Package Type</label>
+             </div>
+         </div>
+          <!-- Couple's Name -->
+          <div class="row tooltipped" data-position="top"
+          data-tooltip="Please enter couple's name">
+          <div class="input-field col s12">
+              <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+              <input id="couple_name" name="couple_name" type="text"
+                  class="validate">
+              <label for="couple_name">Couple's Name</label>
+          </div>
+      </div>
+       <!-- Set up time -->
+       <div class="row tooltipped" data-position="top"
+       data-tooltip="Please enter set up time">
+       <div class="input-field col s12">
+           <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+           <input id="set_up_time" name="set_up_time" type="text"
+               class="validate" required>
+           <label for="set_up_time">Set Up Time</label>
+       </div>
+   </div>
+    <!-- Directions -->
+    <div class="row tooltipped" data-position="top"
+    data-tooltip="Please Google maps link">
+    <div class="input-field col s12">
+        <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+        <input id="directions" name="directions" type="text"
+            class="validate" required>
+        <label for="directions">Directions</label>
+    </div>
+</div>
+            <!-- Image url input -->
+            <div class="row tooltipped" data-position="top"
+                data-tooltip="Please enter image url. Must be jpeg or png format">
+                <div class="input-field col s12">
+                    <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
+                    <input id="image_url" name="image_url" type="url" class="validate" placeholder="https://"
+                        pattern="https?://.+" required>
+                    <label for="image_url">Image Link (png or jpeg only)</label>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="buttons btn-large text-shadow">
+                        Add Gig <i class="fas fa-plus-square right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
