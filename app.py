@@ -189,12 +189,12 @@ def edit_gigs(gig_id):
 
             # Update mongodb sneakers collection
             mongo.db.gigs.update({"_id": ObjectId(gig_id)}, add)
-            flash("Your sneakers have been updated!")
+            flash("Gig has been updated!")
             return redirect(url_for('profile'))
 
     gig = mongo.db.gigs.find_one_or_404({"_id": ObjectId(gig_id)})
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
+    categories = mongo.db.gig_categories.find().sort("category_name", 1)
     return render_template(
         "edit-gigs.html", gig=gig, categories=categories)
 

@@ -14,20 +14,26 @@
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
                     <select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose category</option>
-                            {% for category in categories %}
-                                <option value="{{ category.category_name }}">{{ category.category_name.capitalize() }}
+                        <option value="" disabled>Choose category</option>
+                        {% for category in categories %}
+                        <!-- If cateogry name iteration matches our sneaker category name
+                                Select that category  -->
+                            {% if category.category_name == gig.category_name %}
+                                <option value="{{ category.category_name }}" selected>{{ category.category_name.capitalize() }}
                                 </option>
-                            {% endfor %}
+                            {% else %}
+                                <option value="{{ category.category_name }}">{{ category.category_name.capitalize() }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
-                    <label for="category_name">Gig Category</label>
+                    <label for="category_name">Category</label>
                 </div>
             </div>
             <!-- Venue name input -->
             <div class="row tooltipped" data-position="top" data-tooltip="Please enter name of shoe min 1 characters">
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                    <input id="venue" name="venue" minlength="1" maxlength="50" type="text" class="validate"
+                    <input id="venue" name="venue" value="{{ gig.venue }}" minlength="1" maxlength="50" type="text" class="validate"
                         required>
                     <label for="venue">Venue</label>
                 </div>
@@ -37,7 +43,7 @@
                 data-tooltip="Please enter gig date">
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                    <input id="gig_date" name="gig_date" type="text"
+                    <input id="gig_date" name="gig_date" value="{{ gig.gig_date }}" type="text"
                         class="validate" required>
                     <label for="gig_date">Gig Date</label>
                 </div>
@@ -46,7 +52,7 @@
            <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-calendar-alt prefix light-black-text text-darken-4"></i>
-                <input id="date" name="date" type="text" class="datepicker validate" required>
+                <input id="date" name="date" value="{{ gig.date }}" type="text" class="datepicker validate" required>
                 <label for="date">Pick Date</label>
             </div>
         </div>
@@ -55,7 +61,7 @@
                 data-tooltip="Please enter arrival time">
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                    <input id="arrival_time" name="arrival_time" type="text"
+                    <input id="arrival_time" name="arrival_time" value="{{ gig.arrival_time }}" type="text"
                         class="validate" required>
                     <label for="arrival_time">Arrival Time</label>
                 </div>
@@ -65,7 +71,7 @@
                 data-tooltip="Please enter first dance">
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                    <input id="first_dance" name="first_dance" type="text"
+                    <input id="first_dance" name="first_dance" value="{{ gig.first_dance }}" type="text"
                         class="validate">
                     <label for="first_dance">First Dance</label>
                 </div>
@@ -75,7 +81,7 @@
              data-tooltip="Please enter package type">
              <div class="input-field col s12">
                  <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                 <input id="package_type" name="package_type" type="text"
+                 <input id="package_type" name="package_type" value="{{ gig.package_type }}" type="text"
                      class="validate">
                  <label for="package_type">Package Type</label>
              </div>
@@ -85,7 +91,7 @@
           data-tooltip="Please enter couple's name">
           <div class="input-field col s12">
               <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-              <input id="couple_name" name="couple_name" type="text"
+              <input id="couple_name" name="couple_name" value="{{ gig.couple_name }}" type="text"
                   class="validate">
               <label for="couple_name">Couple's Name</label>
           </div>
@@ -95,7 +101,7 @@
        data-tooltip="Please enter set up time">
        <div class="input-field col s12">
            <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-           <input id="set_up_time" name="set_up_time" type="text"
+           <input id="set_up_time" name="set_up_time" value="{{ gig.set_up_time }}" type="text"
                class="validate" required>
            <label for="set_up_time">Set Up Time</label>
        </div>
@@ -105,7 +111,7 @@
     data-tooltip="Please Google maps link">
     <div class="input-field col s12">
         <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-        <input id="directions" name="directions" type="text"
+        <input id="directions" name="directions" value="{{ gig.directions }}" type="text"
             class="validate" required>
         <label for="directions">Directions</label>
     </div>
@@ -115,7 +121,7 @@
                 data-tooltip="Please enter image url. Must be jpeg or png format">
                 <div class="input-field col s12">
                     <i class="fas fa-check-circle prefix" aria-hidden="true"></i>
-                    <input id="image_url" name="image_url" type="url" class="validate" placeholder="https://"
+                    <input id="image_url" name="image_url" value="{{ gig.image_url }}" type="url" class="validate" placeholder="https://"
                         pattern="https?://.+" required>
                     <label for="image_url">Image Link (png or jpeg only)</label>
                 </div>
