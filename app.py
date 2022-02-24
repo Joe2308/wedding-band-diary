@@ -138,8 +138,8 @@ def availability():
             "user": session["user"]
         }
         mongo.db.availability.insert_one(add)
-        flash("Your availability has been saved!")
-        return redirect(url_for("my_profile"))
+        flash("Your date has been entered!")
+        return redirect(url_for("deps"))
     # Check if user is authenticated
     if is_authenticated():
         return render_template("availability.html")
