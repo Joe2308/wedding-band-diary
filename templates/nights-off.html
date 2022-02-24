@@ -12,19 +12,14 @@
 </div>
 
 <div class="row">
-    {% for dep in deps %}
+    {% for night in nights %}
         <div class="card-fixed col s12 m3 l4">
-            <a href="{{ url_for() }}">
+            <a href="">
                 <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
-                    <div class="card-image">
-                        <!-- Show image from database or backup from images folder -->
-                        <img class="activator" src="{{ gig.image_url }}" alt="All sneakers image"
-                            onerror="this.onerror=null;this.src='../static/images/error-image.png';">
-                    </div>
                     <div class="card-content">
                         <!-- Show title, shoename and user from database -->
-                        <p class="shoe-name">{{ dep.gig_date }}</p>
-                        <p><em>{{ dep.user }}</em></p>
+                        <p class="shoe-name">{{ night.gig_date }}</p>
+                        <p><i class="fas fa-user"></i> <em>{{ night.user }}</em></p>
                     </div>
                 </div>
             </a>

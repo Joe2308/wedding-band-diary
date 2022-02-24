@@ -125,6 +125,39 @@ def edit_profile(image_id):
     return redirect(url_for('login'))
 
 
+# Member availablity
+@app.route("/availability", methods=["GET", "POST"])
+def availability():
+    """Function to add member availability"""
+    if request.method == "POST":
+        date_time_str = request.form.get("date")
+        date_time_obj = datetime.strptime(date_time_str, '%b %d, %y')
+        add = {
+            "date": date_time_obj,
+            "gig_date": request.form.get("gig_date"),
+            "user": session["user"]
+        }
+        mongo.db.availability.insert_one(add)
+        flash("Your availability has been saved!")
+        return redirect(url_for("my_profile"))
+    # Check if user is authenticated
+    if is_authenticated():
+        return render_template("availability.html")
+    flash("You must be an Admin to perform that operation!")
+    return redirect(url_for('login'))
+
+
+# nights off template
+@app.route("/deps")
+def deps():
+    """Function to return band memeber nights off"""
+    if is_authenticated():
+        nights = mongo.db.availability.find().sort('date', 1)
+        return render_template("nights-off.html", nights=nights)
+    flash("You must be a band member to access this page!")
+    return redirect(url_for("login"))
+
+
 # Add gigs form
 @app.route("/add_gigs", methods=["GET", "POST"])
 def add_gigs():
