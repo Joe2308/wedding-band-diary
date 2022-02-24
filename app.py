@@ -188,9 +188,9 @@ def edit_gigs(gig_id):
             }
 
             # Update mongodb sneakers collection
-            mongo.db.gigs.update({"_id": ObjectId(gig_id)}, add)
+            mongo.db.gigs.replace_one({"_id": ObjectId(gig_id)}, add)
             flash("Gig has been updated!")
-            return redirect(url_for('profile'))
+            return redirect(url_for('get_gigs'))
 
     gig = mongo.db.gigs.find_one_or_404({"_id": ObjectId(gig_id)})
 
@@ -209,7 +209,7 @@ def delete_gigs(gig_id):
 
         mongo.db.gigs.delete_one({"_id": ObjectId(gig_id)})
         flash("Gig successfully deleted")
-        return redirect(url_for('my_profile'))
+        return redirect(url_for('get_gigs'))
 
     flash("You must be an admin to delete gigs")
     return redirect(url_for("login"))
