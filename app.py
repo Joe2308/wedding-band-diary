@@ -158,6 +158,52 @@ def deps():
     return redirect(url_for("login"))
 
 
+# Edit nights off form
+@app.route("/edit_nights/<night_id>", methods=["GET", "POST"])
+def edit_nights(night_id):
+    """ Function to edit nights off """
+    # Check if user is authenticated
+    if is_authenticated():
+        # Check if object id is valid
+
+        if request.method == "POST":
+            date_time_str = request.form.get("date")
+            date_time_obj = datetime.strptime(date_time_str, '%b %d, %y')
+            # Create dictionary to collect all form data
+            add = {
+                "gig_date": request.form.get("gig_date"),
+                "date": date_time_obj,
+                "user": session["user"]
+            }
+
+            # Update mongodb sneakers collection
+            mongo.db.availability.replace_one({"_id": ObjectId(night_id)}, add)
+            flash("Date has been updated!")
+            return redirect(url_for('deps'))
+
+    night = mongo.db.availability.find_one_or_404({"_id": ObjectId(night_id)})
+
+    categories = mongo.db.gig_categories.find().sort("category_name", 1)
+    return render_template(
+        "edit-nights-off.html", night=night, categories=categories)
+
+
+# Delete nights off
+@app.route("/delete_nights/<night_id>")
+def delete_nights(night_id):
+    """ Function to delete nights off"""
+    # Check if user is authenticated
+    if is_authenticated():
+        # Check if object id is valid
+
+        mongo.db.availability.delete_one({"_id": ObjectId(night_id)})
+        flash("Date successfully deleted")
+        return redirect(url_for('deps'))
+
+    flash("You must be logged in to delete these dates")
+    return redirect(url_for("login"))
+
+
 # Add gigs form
 @app.route("/add_gigs", methods=["GET", "POST"])
 def add_gigs():
@@ -245,7 +291,7 @@ def delete_gigs(gig_id):
         return redirect(url_for('get_gigs'))
 
     flash("You must be an admin to delete gigs")
-    return redirect(url_for("login"))
+    return redirect(url_for("get_gigs"))
 
 
 # Check if object id is valid

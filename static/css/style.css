@@ -4,7 +4,10 @@
 * Autoprefixer: v10.3.1
 * Browsers: last 4 version
 */
-
+.inline-span {
+  display: inline-block;
+  margin-right: 25px;
+}
 /* Navigation styles */
 nav {
     background-color: black;
@@ -32,6 +35,10 @@ nav {
   nav a i {
     font-size: 18px;
     margin-right: 5px;
+  }
+
+  .change:hover {
+    color: red !important;
   }
   
   /* Button styles */

@@ -13,13 +13,35 @@
 
 <div class="row">
     {% for night in nights %}
+        <!-- Defensive programming delete modal -->
+        <div id="modal-{{ loop.index }}" class="modal">
+            <div class="modal-content">
+                <h4 class="center-align">Are You Sure?</h4>
+            </div>
+            <div class="center-align">
+                <img src="{{url_for('static', filename='images/logo.png')}}" height="150" alt="Picture Perfect Logo">
+            </div>
+            <div class="modal-footer">
+                <a href="" class="modal-close buttons-2 btn red text-shadow">No <i
+                        class="fas fa-times-circle right" aria-hidden="true"></i></a>
+                <a href="{{ url_for('delete_nights', night_id=night._id) }}"
+                    class="buttons-2 modal-close black btn">Yes <i class="fas fa-check-circle"
+                        aria-hidden="true"></i></a>
+            </div>
+        </div>
+
         <div class="card-fixed col s12 m3 l4">
             <a href="">
                 <div class="card tooltipped" data-position="top" data-tooltip="Click for more info">
                     <div class="card-content">
                         <!-- Show title, shoename and user from database -->
                         <p class="shoe-name">{{ night.gig_date }}</p>
-                        <p><i class="fas fa-user"></i> <em>{{ night.user }}</em></p>
+                     <span class="inline-span"><p><i class="fas fa-user"></i> <em>{{ night.user }}</em></p></span>
+                     <span class="inline-span">
+                       {% if session.user|lower == night.user %}
+                        <a class="change" href="{{ url_for('edit_nights', night_id=night._id)}}">Edit <i class="fas fa-edit"></i></a>
+                        <a href="#modal-{{ loop.index }}" class="modal-trigger change">Delete <i class="fas fa-trash-alt"></i></a>
+                        {% endif %}</span>
                     </div>
                 </div>
             </a>
